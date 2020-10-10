@@ -1,3 +1,5 @@
 # Executables
 *.exe
 *.out
+/CF/D2-307/A/*.un~
+/CF/D2-307/A/*.cpp~
