@@ -1,8 +1,8 @@
 /**
- * File              : A.cpp
+ * File              : B.cpp
  * Author            : Bao To Hoai
- * Date              : 23.10.2020 16:51:52
- * Last Modified Date: 23.10.2020 19:37:41
+ * Date              : 24.10.2020 20:22:53
+ * Last Modified Date: 24.10.2020 20:50:21
  * Last Modified By  : Bao To Hoai
  */
 #include <bits/stdc++.h>
@@ -55,32 +55,25 @@ template<class H, class... T> void DBG(H h, T... t) {
 #else
 #define dbg(...) 42
 #endif
-const int dx[] = {1, -1, 0, 0};
-const int dy[] = {0, 0, 1, -1};
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
     int n;
     cin >> n;
-    vector<string> A(n);
-    for (int i = 0; i < n; i++) {
-        cin >> A[i];
-    }
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            int cnt = 0;
-            for (int d = 0; d < 4; d++) {
-                int x = i + dx[d];
-                int y = j + dy[d];
-                if (x >= 0 && x < n && y >= 0 && y < n && A[x][y] == 'o') cnt++;
-            }
-            if (cnt & 1) {
-                puts("NO");
-                return 0;
-            }
+    int ans = 0;
+    int l = sz(to_string(n));
+    if (l & 1) {
+        for (int i = 1; i <= l - 2; i += 2) {
+            ans += 9*pow(10, i - 1);
+        }
+        ans += n - pow(10, l - 1) + 1;
+    } else {
+        for (int i = 1; i <= l - 1; i += 2) {
+            ans += 9*pow(10, i - 1);
         }
     }
-    puts("YES");
+    cout << ans << "\n";
     return 0;
 }
 
