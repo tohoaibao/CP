@@ -1,8 +1,8 @@
 /**
- * File              : B.cpp
+ * File              : C.cpp
  * Author            : Bao To Hoai
- * Date              : 19.10.2020 09:29:57
- * Last Modified Date: 19.10.2020 09:39:46
+ * Date              : 27.10.2020 10:13:26
+ * Last Modified Date: 27.10.2020 10:32:16
  * Last Modified By  : Bao To Hoai
  */
 #include <bits/stdc++.h>
@@ -56,16 +56,34 @@ template<class H, class... T> void DBG(H h, T... t) {
 #define dbg(...) 42
 #endif
 
+// TLE
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    int n;
-    vector<int> A(n);
-    for (int i = 0; i < n; i++) {
-        cin >> A[i];
+    int n, m;
+    cin >> n >> m;
+    vector<unordered_set<int>> A(m);
+    for (int i = 0; i < m; i++) {
+        int l, r;
+        unordered_set<int> set;
+        cin >> l >> r;
+        for (int j = l; j <= r; j++) {
+            set.insert(j);
+        }
+        A[i] = set;
     }
     int ans = 0;
-
+    for (int id = 1; id <= n; id++) {
+        bool flag = true;
+        for (int i = 0; i < m; i++) {
+            if (A[i].find(id) == A[i].end()) {
+                flag = false;
+                break;
+            }
+        }
+        if (flag) ans++;
+    }
+    cout << ans << '\n';
     return 0;
 }
 
