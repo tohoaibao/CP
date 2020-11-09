@@ -1,8 +1,8 @@
 /**
  * File              : B.cpp
  * Author            : Bao To Hoai
- * Date              : 09.11.2020 14:10:58 UTC+7
- * Last Modified Date: 09.11.2020 14:56:19 UTC+7
+ * Date              : 03.11.2020 20:25:28 UTC+7
+ * Last Modified Date: 03.11.2020 21:01:20 UTC+7
  * Last Modified By  : Bao To Hoai
  */
 #include <bits/stdc++.h>
@@ -58,28 +58,26 @@ template<class H, class... T> void DBG(H h, T... t) {
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    int n, m;
-    cin >> n;
-    vector<int> A(n);
-    for (int i = 0; i < n; i++) {
+    vector<int> A(5);
+    for (int i = 0; i < 5; i++) {
         cin >> A[i];
     }
-    cin >> m;
-    vector<int> B(m);
-    for (int i = 0; i < m; i++) {
-        cin >> B[i];
-    }
-    sort(all(A));
-    sort(all(B));
-    int ans = 0, i = 0, j = 0;
-    while (i < n && j < m) {
-        if (abs(A[i] - B[j]) <= 1) {
-            ans++;
-            i++;
-            j++;
+    sort(all(A), [&](int o1, int o2){
+        return o1 % 10 < o2 % 10;
+    });
+    int last = 0;
+    for (int i = 0; i < 5; i++) {
+        if (A[i] % 10 != 0) {
+            last = i;
+            break;
         }
-        else if (A[i] < B[j]) i++;
-        else j++;
+    }
+    int ans = A[last];
+    for (int i = 0; i < 5; i++) {
+        if (i != last) {
+            if (A[i] % 10 == 0) ans += A[i];
+            else ans += A[i] + 10 - A[i] % 10;
+        }
     }
     cout << ans << '\n';
     return 0;

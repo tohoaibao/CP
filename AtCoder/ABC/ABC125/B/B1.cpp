@@ -1,8 +1,8 @@
 /**
- * File              : B.cpp
+ * File              : B1.cpp
  * Author            : Bao To Hoai
- * Date              : 09.11.2020 14:10:58 UTC+7
- * Last Modified Date: 09.11.2020 14:56:19 UTC+7
+ * Date              : 28.10.2020 20:07:03
+ * Last Modified Date: 28.10.2020 20:09:14
  * Last Modified By  : Bao To Hoai
  */
 #include <bits/stdc++.h>
@@ -11,6 +11,7 @@ using namespace std;
 #define ll long long
 #define all(c) (c).begin(), (c).end()
 #define sz(x) (int)(x).size()
+#define forn(i, a, b) for (int i = (a); i < (b); ++i)
 
 string to_string(char c) {
     return string(1, c);
@@ -58,28 +59,18 @@ template<class H, class... T> void DBG(H h, T... t) {
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    int n, m;
+    int n;
     cin >> n;
-    vector<int> A(n);
+    vector<int> V(n), C(n);
     for (int i = 0; i < n; i++) {
-        cin >> A[i];
+        cin >> V[i];
     }
-    cin >> m;
-    vector<int> B(m);
-    for (int i = 0; i < m; i++) {
-        cin >> B[i];
+    for (int i = 0; i < n; i++) {
+        cin >> C[i];
     }
-    sort(all(A));
-    sort(all(B));
-    int ans = 0, i = 0, j = 0;
-    while (i < n && j < m) {
-        if (abs(A[i] - B[j]) <= 1) {
-            ans++;
-            i++;
-            j++;
-        }
-        else if (A[i] < B[j]) i++;
-        else j++;
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+        if (V[i] > C[i]) ans += V[i] - C[i];
     }
     cout << ans << '\n';
     return 0;

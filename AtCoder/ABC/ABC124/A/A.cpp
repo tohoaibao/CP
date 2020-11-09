@@ -1,8 +1,8 @@
 /**
- * File              : B.cpp
+ * File              : A.cpp
  * Author            : Bao To Hoai
- * Date              : 09.11.2020 14:10:58 UTC+7
- * Last Modified Date: 09.11.2020 14:56:19 UTC+7
+ * Date              : 01.11.2020 18:45:04 UTC+7
+ * Last Modified Date: 01.11.2020 18:47:30 UTC+7
  * Last Modified By  : Bao To Hoai
  */
 #include <bits/stdc++.h>
@@ -58,30 +58,10 @@ template<class H, class... T> void DBG(H h, T... t) {
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    int n, m;
-    cin >> n;
-    vector<int> A(n);
-    for (int i = 0; i < n; i++) {
-        cin >> A[i];
-    }
-    cin >> m;
-    vector<int> B(m);
-    for (int i = 0; i < m; i++) {
-        cin >> B[i];
-    }
-    sort(all(A));
-    sort(all(B));
-    int ans = 0, i = 0, j = 0;
-    while (i < n && j < m) {
-        if (abs(A[i] - B[j]) <= 1) {
-            ans++;
-            i++;
-            j++;
-        }
-        else if (A[i] < B[j]) i++;
-        else j++;
-    }
-    cout << ans << '\n';
+    int a, b;
+    cin >> a >> b;
+    if (a < b) swap(a, b);
+    cout << max(2 * a - 1, a + b) << '\n';
     return 0;
 }
 

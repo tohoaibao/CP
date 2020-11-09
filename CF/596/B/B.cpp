@@ -1,8 +1,8 @@
 /**
  * File              : B.cpp
  * Author            : Bao To Hoai
- * Date              : 09.11.2020 14:10:58 UTC+7
- * Last Modified Date: 09.11.2020 14:56:19 UTC+7
+ * Date              : 31.10.2020 10:00:00 UTC+7
+ * Last Modified Date: 31.10.2020 10:09:50 UTC+7
  * Last Modified By  : Bao To Hoai
  */
 #include <bits/stdc++.h>
@@ -58,28 +58,14 @@ template<class H, class... T> void DBG(H h, T... t) {
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    int n, m;
+    int n;
     cin >> n;
-    vector<int> A(n);
+    ll ans = 0, prev = 0;
     for (int i = 0; i < n; i++) {
-        cin >> A[i];
-    }
-    cin >> m;
-    vector<int> B(m);
-    for (int i = 0; i < m; i++) {
-        cin >> B[i];
-    }
-    sort(all(A));
-    sort(all(B));
-    int ans = 0, i = 0, j = 0;
-    while (i < n && j < m) {
-        if (abs(A[i] - B[j]) <= 1) {
-            ans++;
-            i++;
-            j++;
-        }
-        else if (A[i] < B[j]) i++;
-        else j++;
+        int x;
+        cin >> x;
+        ans = ans + abs(x - prev);
+        prev = x;
     }
     cout << ans << '\n';
     return 0;

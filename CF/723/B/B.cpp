@@ -1,8 +1,8 @@
 /**
  * File              : B.cpp
  * Author            : Bao To Hoai
- * Date              : 09.11.2020 14:10:58 UTC+7
- * Last Modified Date: 09.11.2020 14:56:19 UTC+7
+ * Date              : 31.10.2020 10:29:57 UTC+7
+ * Last Modified Date: 31.10.2020 10:55:41 UTC+7
  * Last Modified By  : Bao To Hoai
  */
 #include <bits/stdc++.h>
@@ -58,30 +58,32 @@ template<class H, class... T> void DBG(H h, T... t) {
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    int n, m;
-    cin >> n;
-    vector<int> A(n);
+    int n;
+    string s;
+    cin >> n >> s;
+    int ans1 = 0, ans2 = 0, curr = 0;
     for (int i = 0; i < n; i++) {
-        cin >> A[i];
-    }
-    cin >> m;
-    vector<int> B(m);
-    for (int i = 0; i < m; i++) {
-        cin >> B[i];
-    }
-    sort(all(A));
-    sort(all(B));
-    int ans = 0, i = 0, j = 0;
-    while (i < n && j < m) {
-        if (abs(A[i] - B[j]) <= 1) {
-            ans++;
+        if (s[i] == '_') {
+            curr = 0;
+        } else if (s[i] == '(') {
+            curr = 0;
+            bool ok = true;
             i++;
-            j++;
+            while (i < n && s[i] != ')') {
+                if (s[i] != '_' && ok) {
+                    ans2++;
+                    ok = false;
+                } else if (s[i] == '_') {
+                    ok = true;
+                }
+                i++;
+            }
+        } else {
+            curr++;
+            ans1 = max(ans1, curr);
         }
-        else if (A[i] < B[j]) i++;
-        else j++;
     }
-    cout << ans << '\n';
+    cout << ans1 << " " << ans2 << '\n';
     return 0;
 }
 
